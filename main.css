@@ -1,0 +1,42 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.header{
+    background-color: #FFFFFFB3;
+    font-size: 16;
+    padding: 0px 16px;
+}
+.container{
+    width: 1280px;
+    margin: auto;
+    background-color:FFFFFFB3;
+}
+.container-left{
+    padding-bottom: 12px;
+    padding-top: 12px;
+}
+.logo{
+    margin-right: 5px;
+    margin-top: 5px;
+    float: left;
+    box-sizing: border-box;
+
+}
+.logo img {
+    display: block;
+}
+.menu{
+    float: left;
+}
+.menu-item{
+    font-size: 16px;
+    padding: 16px 8px;
+    float: left;
+    line-height: 1;
+}
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
