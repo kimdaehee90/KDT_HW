@@ -23,7 +23,7 @@ body{
     box-sizing: border-box;
 
 }
-.logo img {
+.logo img{
     display: block;
 }
 .menu{
@@ -35,7 +35,7 @@ body{
     float: left;
     line-height: 1;
 }
-.clearfix::after {
+.clearfix::after{
     content: "";
     display: block;
     clear: both;
