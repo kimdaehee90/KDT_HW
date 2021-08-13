@@ -23,7 +23,8 @@
 !pip install requests
 !pip install beautifulsoup4
 '''
-
+####최상단에 impoort 하기
+from openpyxl import Workbook, load_workbook
 from NaverNewsCrawler import NaverNewsCrawler
 
 ####사용자로 부터 기사 수집을 원하는 키워드를 input을 이용해 입력받아 ? 부분에 넣으세요
@@ -43,6 +44,15 @@ SMTP_SERVER = 'smtp.gmail.com'
 SMTP_PORT = 465
 SMTP_USER = '' ####개인정보로 인해 메일주소와 패스워드는 지웠습니다.
 SMTP_PASSWORD = ''
+#### jason 파일 읽어오기
+import json
+
+with open ('asd.json') as f:
+    configs = json.load(f)
+    
+SMTP_USER = configs["email"]
+
+
 
 #### 아래 코드를 실행해 메일 발송에 필요한 send_mail 함수를 만드세요.
 def send_mail(name, addr, subject, contents, attachment=None):
@@ -80,7 +90,7 @@ def send_mail(name, addr, subject, contents, attachment=None):
     smtp.close()
 
 #### 프로젝트 폴더에 있는 email_list.xlsx 파일에 이메일 받을 사람들의 정보를 입력하세요.
-from openpyxl import Workbook ####엑셀 쓰기위한 클래스 import
+# from openpyxl import Workbook ####엑셀 쓰기위한 클래스 import
 
 wb = Workbook()
 ws = wb.active #### 열려있는 시트 활성화
@@ -90,7 +100,7 @@ ws.append([1, '김대희', 'rotnprgl432@gmail.com']) ####행에 내용 추가
 wb.save('email_list.xlsx') ####email_list라는 이름의 xlsx파일을 만들어 저장
 
 #### 엑셀 파일의 정보를 읽어올 수 있는 모듈을 import하세요.
-from openpyxl import load_workbook
+# from openpyxl import load_workbook
 
 #### email_list.xlsx 파일을 읽어와 해당 사람들에게 수집한 뉴스 정보 엑셀 파일을 send_mail 함수를 이용해 전송하세요.
 wb = load_workbook('email_list.xlsx',read_only=True) ####email_list라는 엑셀 파일을 열어서 읽음 / 대용량 파일일 경우를 대비해 모두 가져오지 못하게 함
@@ -104,4 +114,4 @@ attachment = 'result3.xlsx' ####첨부파일 지정
 for row in data.iter_rows(min_row=2, min_col=2) :####시트에서 범위 지정
     user = row[0].value ####cell의 형태로 읽어오기 때문에 내가 쓴 value로 보여지기 위해 변수로 지정
     addr = row[1].value
-send_mail(user, addr, subject, contents, attachment) ####send_mail 함수 호출
+    send_mail(user, addr, subject, contents, attachment) ####send_mail 함수 호출
